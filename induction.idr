@@ -66,3 +66,35 @@ Induction.plusAssocStepCase = proof
   rewrite ih
   trivial
 
+double : Nat -> Nat
+double Z = Z
+double (S k) = (S (S (double k)))
+
+doublePlusRefl : (n : Nat) -> double n = n + n
+doublePlusRefl Z = refl
+doublePlusRefl (S n) = let ih = doublePlusRefl n in ?doublePlusStepCase
+
+Induction.doublePlusStepCase = proof
+  intros
+  rewrite sym ih
+  rewrite (plusNSuccMRefl n n)
+  trivial
+
+plusRearrange : (a:Nat) -> (b:Nat) -> (c:Nat) -> (d:Nat) -> (a + b) + (c + d) = (b + a) + (c + d)
+plusRearrange a b c d = ?plusRearrangeBase
+
+Induction.plusRearrangeBase = proof
+  intros
+  rewrite (plusCommutes a b)
+  trivial
+
+plusSwap : (a:Nat) -> (b:Nat) -> (c:Nat) -> a + (b + c) = b + (a + c)
+plusSwap = ?plusSwapProof
+
+Induction.plusSwapProof = proof
+  intros
+  rewrite sym (plusAssoc b a c)
+  rewrite (plusCommutes b a)
+  rewrite (plusCommutes a b)
+  rewrite(plusAssoc a b c)
+  trivial
