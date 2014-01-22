@@ -1,6 +1,8 @@
 module Induction
 
-total plusZeroReduces : (n : Nat) -> n + 0 = n
+%default total
+
+plusZeroReduces : (n : Nat) -> n + 0 = n
 plusZeroReduces Z = refl
 plusZeroReduces (S k) = let ind = plusZeroReduces k in ?plusZeroSucc
 
@@ -9,7 +11,7 @@ Induction.plusZeroSucc = proof
   rewrite ind
   trivial
 
-total minusDiag : (n : Nat) -> minus n n = Z
+minusDiag : (n : Nat) -> minus n n = Z
 minusDiag Z = refl
 minusDiag (S k) = let ih = minusDiag k in ?minusDiagNeutral
 
@@ -18,7 +20,7 @@ Induction.minusDiagNeutral = proof
   rewrite ih
   trivial
 
-total multZeroIsZero : (n : Nat) -> mult n Z = Z
+multZeroIsZero : (n : Nat) -> mult n Z = Z
 multZeroIsZero Z = refl
 multZeroIsZero (S k) = let ih = multZeroIsZero k in ?multSuccByZeroIsZero
 
@@ -51,7 +53,7 @@ Induction.plusCommutesSuccCase = proof
   rewrite ih
   trivial
 
-total plusAssoc : (a : Nat) -> (b : Nat) -> (c : Nat) -> a + (b + c) = (a + b) + c
+plusAssoc : (a : Nat) -> (b : Nat) -> (c : Nat) -> a + (b + c) = (a + b) + c
 plusAssoc Z b c = ?plusAssocBaseCase
 plusAssoc (S a) b c = let ih = plusAssoc a b c in ?plusAssocStepCase
 
