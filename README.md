@@ -1,2 +1,4 @@
-Some proofs to [Software Foundations](http://www.cis.upenn.edu/~bcpierce/sf/)
-written in Idris.
+Software Foundations In Idris
+=============================
+
+A handful of exercises from [Software Foundations](http://www.cis.upenn.edu/~bcpierce/sf/) translated to Idris.
